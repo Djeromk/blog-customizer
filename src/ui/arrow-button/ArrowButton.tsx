@@ -11,6 +11,7 @@ type ArrowButtonProps = {
 };
 
 export const ArrowButton = ({ isOpen, onClick }: ArrowButtonProps) => {
+
 	return (
 		/* Не забываем указаывать role и aria-label атрибуты для интерактивных элементов */
 		<div

@@ -27,14 +27,12 @@ type ArticleParamsFormProps = {
 export const ArticleParamsForm = ({ onSubmit }: ArticleParamsFormProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [formState, setFormState] = useState(defaultArticleState);
-	console.log('isOpen: ', isOpen);
-
 
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const handleToggle = useCallback(() => {
+	const handleToggle = () => {
 		setIsOpen(!isOpen);
-	}, []);
+	};
 
 	useOutsideClickClose({
 		isOpen: isOpen,
@@ -55,6 +53,8 @@ export const ArticleParamsForm = ({ onSubmit }: ArticleParamsFormProps) => {
 		event?.preventDefault();
 		onSubmit(formState);
 	};
+
+
 	return (
 		<>
 			<ArrowButton isOpen={isOpen} onClick={handleToggle} />
