@@ -10,15 +10,25 @@ type UseOutsideClickClose = {
 export const useOutsideClickClose = ({
 	isOpen,
 	rootRef,
-	onClose,
 	onChange,
+	onClose,
 }: UseOutsideClickClose) => {
+	console.log("useOutsideClickClose");
 	useEffect(() => {
+		if (!isOpen) return;
 		const handleClick = (event: MouseEvent) => {
+			if (!rootRef.current) return;
 			const { target } = event;
-			if (target instanceof Node && !rootRef.current?.contains(target)) {
+			if (
+				target instanceof Node &&
+				!rootRef.current?.contains(target)
+				// &&
+				// !(target as Element)?.closest('[role="button"]')
+			) {
 				isOpen && onClose?.();
 				onChange?.(false);
+				console.log(target);
+
 			}
 		};
 
