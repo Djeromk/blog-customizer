@@ -33,7 +33,7 @@ export const ArticleParamsForm = ({ onSubmit }: ArticleParamsFormProps) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	const handleToggle = useCallback(() => {
-		setIsOpen(false);
+		setIsOpen(!isOpen);
 	}, []);
 
 	useOutsideClickClose({
@@ -56,10 +56,10 @@ export const ArticleParamsForm = ({ onSubmit }: ArticleParamsFormProps) => {
 		onSubmit(formState);
 	};
 	return (
-		<div ref={containerRef}>
-			<ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+		<>
+			<ArrowButton isOpen={isOpen} onClick={handleToggle} />
 			<aside
-				//ref={containerRef}
+				ref={containerRef}
 				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 				<form className={styles.form}>
 					<h2 className={styles.title}>Задайте параметры</h2>
@@ -141,6 +141,6 @@ export const ArticleParamsForm = ({ onSubmit }: ArticleParamsFormProps) => {
 					</div>
 				</form>
 			</aside>
-		</div>
+		</>
 	);
 };
